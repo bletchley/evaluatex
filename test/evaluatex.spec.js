@@ -39,6 +39,11 @@ describe("Evaluatex", function () {
         test("min(5, 4, 3, -2, 1)", -2);
     });
 
+    it("supports case-insensitive Javascript's Math constants", function () {
+        test("pi", Math.PI);
+        test("e", Math.E);
+    });
+
     it("supports absolute values", function () {
         test("|5|", 5);
         test("|-5|", 5);

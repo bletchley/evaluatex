@@ -9,17 +9,26 @@ import Token from "../Token";
  * @returns {*}
  */
 export default function replaceToken(token) {
-    // if (token.type === Token.TYPE_COMMAND && token.value === "\\left(") {
-    //     return new Token(Token.TYPE_LPAREN, "(");
-    // }
-    // else if (token.type === Token.TYPE_COMMAND && token.value === "\\right(") {
-    //     return new Token(Token.TYPE_RPAREN, "(");
-    // }
-    // else if (token.type === Token.TYPE_COMMAND && token.value === "\\left[") {
-    //     return new Token(Token.TYPE_LPAREN, "[");
-    // }
-    // else if (token.type === Token.TYPE_COMMAND && token.value === "\\right]") {
-    //     return new Token(Token.TYPE_RPAREN, "]");
-    // }
-    return token;
+  switch (token.type) {
+      case Token.TYPE_COMMAND:
+          switch (token.name) {
+              case 'pi':
+                  return new Token(Token.TYPE_NUMBER, Math.PI);
+              case 'e':
+                  return new Token(Token.TYPE_NUMBER, Math.E);
+              default:
+                  return token;
+          }
+      case Token.TYPE_SYMBOL:
+          switch (token.value) {
+              case 'pi':
+                  return new Token(Token.TYPE_NUMBER, Math.PI);
+              case 'e':
+                  return new Token(Token.TYPE_NUMBER, Math.E);
+              default:
+                  return token;
+          }
+      default:
+          return token;
+  }
 };
