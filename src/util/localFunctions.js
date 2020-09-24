@@ -2,6 +2,13 @@
 Javascript's Math API omits some important mathematical functions. These are included here.
  */
 
+const locals = {};
+
+// Copy things from Math. Can't use Object.assign since Math has non-enumerable properties.
+for (const k of Object.getOwnPropertyNames(Math)) {
+    locals[k] = Math[k];
+}
+
 export const fact = function fact(a) {
     a = Math.round(a);
     let result = 1;
@@ -18,6 +25,14 @@ export const fact = function fact(a) {
 
 export const frac = function frac(a, b) {
     return a / b;
+};
+
+export const log = function log(x) {
+    return Math.log10(x);
+};
+
+export const ln = function ln(x) {
+    return Math.log(x);
 };
 
 export const logn = function logn(x, b) {
@@ -40,11 +55,34 @@ export const cot = function cot(x) {
     return 1 / Math.tan(x);
 };
 
-const locals = { fact, frac, logn, rootn, sec, csc, cot };
+export const arcsin = function arcsin(x) {
+    return Math.asin(x);
+};
 
-// Copy things from Math. Can't use Object.assign since Math has non-enumerable properties.
-for (const k of Object.getOwnPropertyNames(Math)) {
-    locals[k] = Math[k];
+export const arccos = function arccos(x) {
+    return Math.acos(x);
+};
+
+export const arctan = function arctan(x) {
+    return Math.atan(x);
+};
+
+export const sech = function sech(x) {
+    return 1 / Math.cosh(x);
+};
+
+export const csch = function csch(x) {
+    return 1 / Math.sinh(x);
+};
+
+export const coth = function coth(x) {
+    return 1 / Math.tanh(x);
+};
+
+const functions = { fact, frac, rootn, log, ln, logn, sec, csc, cot, arcsin, arccos, arctan, sech, csch, coth };
+
+for (const k of Object.getOwnPropertyNames(functions)) {
+    locals[k] = functions[k];
 }
 
 export default locals;

@@ -44,6 +44,14 @@ describe("Evaluatex", function () {
         test("e", Math.E);
     });
 
+    it("supports ASCII math names of functions", function() {
+        test("arcsin(1)", Math.asin(1));
+        test("arccos(1)", Math.acos(1));
+        test("arctan(1)", Math.atan(1));
+        test("log(100)", Math.log10(100));
+        test("ln(1)", Math.log(1));
+    });
+
     it("supports absolute values", function () {
         test("|5|", 5);
         test("|-5|", 5);
@@ -71,6 +79,9 @@ describe("Evaluatex", function () {
         test("csc(1)", 1 / Math.sin(1));
         test("sec(1)", 1 / Math.cos(1));
         test("cot(1)", 1 / Math.tan(1));
+        test("csch(1)", 1 / Math.sinh(1));
+        test("sech(1)", 1 / Math.cosh(1));
+        test("coth(1)", 1 / Math.tanh(1));
     });
 
     it("supports implicit multiplication", function () {
